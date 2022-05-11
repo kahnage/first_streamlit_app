@@ -70,10 +70,6 @@ if streamlit.button('Get Fruit Load List'):
   #   my_cur.execute("Select * from fruit_load_list")
   #   my_data_row = my_cur.fetchall()
   #   streamlit.text("The fruit list contains:")
-  
-  
-# STOP REFRESHING ENTIRE PAGE
-streamlit.stop()
 
 def insert_row_snowflake(new_fruit):
   with my_cnx.cursor() as my_cur:
@@ -91,3 +87,7 @@ if streamlit.button('Add a Fruit to the List'):
 # streamlit.write('The user entered', fruit_choice)
 
 # my_cur.execute("insert into pc_rivery_db.public.fruit_load_list values ('from streamlit')")
+
+
+# STOP REFRESHING ENTIRE PAGE
+streamlit.stop()
