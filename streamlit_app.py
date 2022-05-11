@@ -22,8 +22,14 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 # Display the df on the page (as table)
 streamlit.dataframe(fruits_to_show)
 
+streamlit.header('Fruityvice Fruit Advice!')
+
+# Get data from user
+fruit_choice = streamlit.text_input('What fruit would you like to check?', 'Kiwi')
+streamlit.write('The user entered', fruit_choice)
+
 # Get Fruityvice api data
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi")
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + str(fruit_choice))
 #streamlit.text(fruityvice_response.json()) # Just writes to the screen
 
 # take json data and normalize it
