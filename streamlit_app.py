@@ -27,18 +27,24 @@ streamlit.dataframe(fruits_to_show)
 
 streamlit.header('Fruityvice Fruit Advice!')
 
-# Get data from user
-fruit_choice = streamlit.text_input('What fruit would you like to check?', 'Kiwi')
-streamlit.write('The user entered', fruit_choice)
+try:
+  # Get data from user
+  fruit_choice = streamlit.text_input('What fruit would you like to check?', 'Kiwi')
+  if not fruit_choice:
+    streamlit.erro("Please select a fruit to get info")
+  else:
+    streamlit.write('The user entered', fruit_choice)
 
-# Get Fruityvice api data
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + str(fruit_choice))
-#streamlit.text(fruityvice_response.json()) # Just writes to the screen
+    # Get Fruityvice api data
+    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + str(fruit_choice))
+    #streamlit.text(fruityvice_response.json()) # Just writes to the screen
 
-# take json data and normalize it
-fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-# output to screen as table
-streamlit.dataframe(fruityvice_normalized)
+    # take json data and normalize it
+    fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+    # output to screen as table
+    streamlit.dataframe(fruityvice_normalized)
+except URLError as e:
+  streamlit.error()
 
 
 # STOP REFRESHING ENTIRE PAGE
