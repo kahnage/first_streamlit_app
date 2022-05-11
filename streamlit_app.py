@@ -31,7 +31,7 @@ try:
   # Get data from user
   fruit_choice = streamlit.text_input('What fruit would you like to check?')
   if not fruit_choice:
-    streamlit.erro("Please select a fruit to get info")
+    streamlit.error("Please select a fruit to get info")
   else:
     streamlit.write('The user entered', fruit_choice)
 
